@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cats</string>
+    <string name="menu_remote">Cat</string>
+    <string name="label_title_remote">Paging with remote cat api service as data source</string>
+    <string name="desc_cat">cat</string>
+    <string name="label_error">Something went wrong, please try again</string>
+</resources>

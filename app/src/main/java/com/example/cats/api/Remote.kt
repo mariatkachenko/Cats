@@ -1,5 +1,6 @@
 package com.example.cats.api
 
+import com.squareup.moshi.Moshi
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -8,8 +9,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object Remote {
-    const val API_KEY = "d6fd31ff-2b46-4600-b25d-cbcd09f0ac14"
-    const val API_ENDPOINT = "https://thedogapi.com"
+    const val API_KEY = "58f89b13-1f52-4000-8e06-76239b622f7a"
+    const val API_ENDPOINT = "https://api.thecatapi.com/"
     const val HEADER_API_KEY = "x-api-key"
 
     fun injectCatApiService(retrofit: Retrofit = getRetrofit()): CatApiService {
@@ -19,7 +20,7 @@ object Remote {
     private fun getRetrofit(okHttpClient: OkHttpClient = getOkHttpClient()): Retrofit {
         return Retrofit.Builder()
             .baseUrl(API_ENDPOINT)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create().asLenient())
             .client(okHttpClient)
             .build()
     }

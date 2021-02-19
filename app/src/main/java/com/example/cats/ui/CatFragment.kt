@@ -25,27 +25,8 @@ class CatFragment : Fragment(R.layout.fragment_cat) {
         super.onViewCreated(view, savedInstanceState)
         initMembers()
         setUpViews(view)
-        fetchCatImages()
+        fetchCatImagesLiveData()
     }
-
-    private fun fetchCatImages() {
-        lifecycleScope.launch {
-            catViewModel.fetchCatImages().distinctUntilChanged().collectLatest {
-                adapter.submitData(it)
-            }
-        }
-    }
-
-    @ExperimentalCoroutinesApi
-    @SuppressLint("CheckResult")
-    private fun fetchCatImagesObservable() {
-        catViewModel.fetchCatImagesObservable().subscribe {
-            lifecycleScope.launch {
-                adapter.submitData(it)
-            }
-        }
-    }
-
     private fun fetchCatImagesLiveData() {
         catViewModel.fetchCatImagesLiveData().observe(viewLifecycleOwner, Observer {
             lifecycleScope.launch {

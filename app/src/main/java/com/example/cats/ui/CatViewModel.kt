@@ -17,19 +17,6 @@ class CatViewModel (
     val repository: CatImagesRepository = CatImagesRepository.getInstance()
 ) : ViewModel() {
 
-    fun fetchCatImages(): Flow<PagingData<String>> {
-        return repository.letCatImagesFlow()
-            .map { it.map { it.url } }
-            .cachedIn(viewModelScope)
-    }
-
-    @ExperimentalCoroutinesApi
-    fun fetchCatImagesObservable(): Observable<PagingData<String>> {
-        return repository.letCatImagesObservable()
-            .map { it.map { it.url } }
-            .cachedIn(viewModelScope)
-    }
-
     fun fetchCatImagesLiveData(): LiveData<PagingData<String>> {
         return repository.letCatImagesLiveData()
             .map { it.map { it.url } }

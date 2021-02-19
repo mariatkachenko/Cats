@@ -22,21 +22,6 @@ class CatImagesRepository(
         fun getInstance() = CatImagesRepository()
     }
 
-    fun letCatImagesFlow(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<CatImageModel>> {
-        return Pager(
-            config = pagingConfig,
-            pagingSourceFactory = { CatImagePagingSource(CatApiService) }
-        ).flow
-    }
-
-    @ExperimentalCoroutinesApi
-    fun letCatImagesObservable(pagingConfig: PagingConfig = getDefaultPageConfig()): Observable<PagingData<CatImageModel>> {
-        return Pager(
-            config = pagingConfig,
-            pagingSourceFactory = { CatImagePagingSource(CatApiService) }
-        ).observable
-    }
-
     fun letCatImagesLiveData(pagingConfig: PagingConfig = getDefaultPageConfig()): LiveData<PagingData<CatImageModel>> {
         return Pager(
             config = pagingConfig,
